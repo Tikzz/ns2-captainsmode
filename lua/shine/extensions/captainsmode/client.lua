@@ -4,7 +4,7 @@ local SGUI = Shine.GUI
 
 local CaptainMenu = {}
 local Players = {}
-local TeamNames = {"Team 1", "Team 2"}
+local TeamNames = {"Marines", "Aliens"}
 local IsReady = false
 local MyTurn = false
 local Team1IsMarines = true
@@ -49,11 +49,10 @@ function CaptainMenu:Create()
 
 	self.Window = Window
 
+	local PanelSize = Vector(ScreenWidth * 0.6 - 128, ScreenHeight * 0.8, 0)
 	Window:AddTab(
 		"Pick",
 		function(Panel)
-			local PanelSize = Panel:GetSize()
-
 			local ListTitlePanel = Panel:Add("Panel")
 			ListTitlePanel:SetAnchor("TopLeft")
 			ListTitlePanel:SetSize(Vector(PanelSize.x * 0.96, PanelSize.y * 0.05, 0))
@@ -98,11 +97,11 @@ function CaptainMenu:Create()
 
 			if MyTurn then
 				Turn:SetColour(Colour(0, 1, 0, 1))
-				Turn:SetText(WordWrap(Turn, "Your turn.", 0, CommandPanelSize.x))
+				Turn:SetText("Your turn.")
 				Pick:SetIsVisible(true)
 			else
 				Turn:SetColour(Colour(1, 1, 1, 1))
-				Turn:SetText(WordWrap(Turn, "Waiting for the other captain...", 0, CommandPanelSize.x))
+				Turn:SetText("Waiting for another captain...")
 				Pick:SetIsVisible(false)
 			end
 
@@ -131,8 +130,6 @@ function CaptainMenu:Create()
 	Window:AddTab(
 		"Teams",
 		function(Panel)
-			local PanelSize = Panel:GetSize()
-
 			local ListItems = {}
 
 			local TeamStrings
@@ -217,8 +214,6 @@ function CaptainMenu:Create()
 	Window:AddTab(
 		"Misc",
 		function(Panel)
-			local PanelSize = Panel:GetSize()
-
 			local Cancel = Panel:Add("Button")
 			Cancel:SetFont(Fonts.kAgencyFB_Large)
 			Cancel:SetSize(Vector(PanelSize.x * 0.3, PanelSize.y * 0.1, 0))
@@ -320,7 +315,7 @@ end
 
 function Plugin:ResetState()
 	Players = {}
-	TeamNames = {"Team 1", "Team 2"}
+	TeamNames = {"Marines", "Aliens"}
 	IsReady = false
 	MyTurn = false
 end

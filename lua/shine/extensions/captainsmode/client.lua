@@ -434,5 +434,5 @@ end
 function Plugin:Cleanup()
 	self.BaseClass.Cleanup(self)
 
-	CaptainMenu:Destroy()
+	CaptainMenu.Window:Destroy()
 end
